@@ -91,6 +91,10 @@ input:focus {
   transition: 0.2s ease-in-out;
 }
 
+#reg-form {
+  z-index: 99;
+}
+
 #Quiz-form {
   /* display: none; */
   transition: 1s ease-in-out;
@@ -120,40 +124,49 @@ input:focus {
 
 /* BOUTTON QUIZ */
 
-.button{
-    display: flex;
-    gap: 40px;
+.button {
+  display: flex;
+  gap: 40px;
 }
 
-.answer{
-    border: 1px solid #555;
-    width: 500px;
-    padding: 20px;
-    cursor: pointer;
+.answer {
+  border: 1px solid #555;
+  width: 500px;
+  padding: 0 0 0 10px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 
-.answer:has(input[type='radio']:checked) {
-    border: 2px solid #028a3d;
+label {
+  width: 500px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
-input[type='radio']{
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    /* background-color: black; */
-    border-radius: 50%;
-    border: 1px solid #555;
+.answer:has(input[type="radio"]:checked) {
+  border: 2px solid #028a3d;
 }
 
-input[type='radio']:checked{
-    background-color: #028a3d;
-    border: none;
+input[type="radio"] {
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  /* background-color: black; */
+  border-radius: 50%;
+  border: 1px solid #555;
 }
 
+input[type="radio"]:checked {
+  background-color: #028a3d;
+  border: none;
+}
 
-
-
-
-.btn-pass button{
-    background-color: #EC880C;
+.btn-pass button {
+  background-color: #ec880c;
 }

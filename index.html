@@ -44,14 +44,14 @@
         </form>
 
         <div class="btn-start">
-          <button id="btn-quiz">Commencer</button>
+          <button id="start-quiz">Commencer</button>
         </div>
       </div>
 
       <div class="container" id="Quiz-form">
         <h1>Question</h1>
 
-        <p>Quel est le type d'un fichier javascript ?</p>
+        <p id="question">Quel est le type d'un fichier javascript ?</p>
 
         <div class="chrono">
           <p>Question <span>1</span></p>
@@ -71,21 +71,20 @@
                 <input type="email" placeholder="Votre mail"  data-message="N'oubliez pas de renseigner votre mail avant de commencer le Quiz" />
               </div> -->
         <div class="answer">
-            <input type="radio" id="ts" name="answer">
-            <label for="ts">.TS</label>
-            
+            <input type="radio" id="ans1" name="answer">
+            <label for="ans1" id="answer1"></label>
         </div>
         <div class="answer">
-            <input type="radio" id="jsx" name="answer">
-            <label for="jsx">.JSX</label>
+            <input type="radio" id="ans2" name="answer">
+            <label for="ans2" id="answer2"></label>
         </div>
         <div class="answer">
-            <input type="radio" id="js" name="answer">
-            <label for="js">.JS</label>
+            <input type="radio" id="ans3" name="answer">
+            <label for="ans3" id="answer3"></label>
         </div>
         <div class="answer">
-            <input type="radio" id="j" name="answer">
-            <label for="j">.J</label>
+            <input type="radio" id="ans4" name="answer">
+            <label for="ans4" id="answer4"></label>
         </div>
         </form>
 
@@ -95,7 +94,7 @@
               </div>
     
             <div class="btn-start">
-              <button>Commencer</button>
+              <button>Valider</button>
             </div>
         </div>
       </div>
