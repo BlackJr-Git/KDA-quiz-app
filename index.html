@@ -29,8 +29,10 @@
             <input
               type="text"
               placeholder="Votre nom"
-              data-message="N'oubliez pas de renseigner votre nom avant de commencer le Quiz"
+              required
+              id="name-input"
             />
+            <p id="name-input-required"></p>
           </div>
 
           <div class="email input">
@@ -38,9 +40,15 @@
             <input
               type="email"
               placeholder="Votre mail"
-              data-message="N'oubliez pas de renseigner votre mail avant de commencer le Quiz"
+              required
+              id="mail-input"
             />
+            <p id="mail-input-required"></p>
           </div>
+
+          <!-- <div class="btn-start">
+            <button id="start-quiz">Commencer</button>
+          </div> -->
         </form>
 
         <div class="btn-start">
@@ -90,11 +98,11 @@
 
         <div class="button">
             <div class="btn-pass btn-start ">
-                <button>Quitter</button>
+                <button id="btnquit">Quitter</button>
               </div>
     
             <div class="btn-start">
-              <button>Valider</button>
+              <button id="btnvalid">Valider</button>
             </div>
         </div>
       </div>
