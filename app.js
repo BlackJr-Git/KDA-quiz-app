@@ -1,6 +1,8 @@
 const quizForm = document.getElementById("Quiz-form");
 const btnQuiz = document.getElementById("btn-quiz");
 
+const timer = document.getElementById('progress');
+
 // Verification
 
 const nameInput = document.getElementById("name-input");
@@ -56,36 +58,65 @@ const question3 = {
 
 const questionArrays = [question1, question2, question3] // Liste de question 
 
+
+
 function remplir() {
+    let randQuestion = Math.floor(Math.random()*questionArrays.length);
     // Quiz form fill
-    questionLabel.innerText = question1.question;
+    questionLabel.innerText = questionArrays[randQuestion].question;
   
-    firstAnswer.innerText = question1.answer1;
-    secondAnswer.innerText = question1.answer2;
-    thirdAnswer.innerText = question1.trueAnswer;
-    fourthAnswer.innerText = question1.answer3;
+    firstAnswer.innerText = questionArrays[randQuestion].answer1;
+    secondAnswer.innerText = questionArrays[randQuestion].answer2;
+    thirdAnswer.innerText = questionArrays[randQuestion].trueAnswer;
+    fourthAnswer.innerText = questionArrays[randQuestion].answer3;
   
     registrationForm.style.display = "none";
 }
 
 function registerPlayerId() {
   if (getName && getMail) {
-    nameRequired.innerText = "Le nom est obligatoire";
-    mailRequired.innerText = "Ladresse mail est obligatoire";
+    nameRequired.innerText = "N’oubliez pas de renseigner votre nom avant de commencer le Quiz";
+    nameInput.style.border = "1px solid #FF3838";
+    mailRequired.innerText = "N’oubliez pas de renseigner votre email avant de commencer le Quiz";
+    mailInput.style.border = "1px solid #FF3838";
   } else {
     player.name = nameInput
-    player.mail = mailInput
+    player.mail = mailInput 
 
     remplir()
     console.log(getName , getMail)
   }
 }
 
+function minuteur() {
+    timer.style.width = timer.style.width + '%'
+}
+
+const progressBar = document.querySelector('.progress div');
+let timeLeft = 30;
+
+function updateProgressBar() {
+    progressBar.style.width = (timeLeft / 30) * 100 + '%';
+}
+
+function startTimer() {
+    
+    const timerInterval = setInterval(function() {
+        if (timeLeft > 0) {
+            timeLeft--;
+            updateProgressBar();
+        } else {
+            // clearInterval(timerInterval);
+            timeLeft = 30;
+            registerPlayerId()
+        }
+    }, 1000);
+}
 
 
 
-
-
-
+btnValid.addEventListener("click", registerPlayerId);
 btnStartQuiz.addEventListener("click", registerPlayerId);
+btnStartQuiz.addEventListener("click", startTimer);
+btnValid.addEventListener("click", startTimer);
 // btnStartQuiz.addEventListener("click", remplir);
