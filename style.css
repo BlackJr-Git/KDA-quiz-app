@@ -135,7 +135,12 @@ input:focus {
     height: 100%;
     background-color: #4caf50;
     transition: 1s ease-in-out;
+}
 
+.countdown {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 /* BOUTTON QUIZ */
