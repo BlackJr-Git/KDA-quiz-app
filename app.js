@@ -28,6 +28,8 @@ const countdownText = document.getElementById("countdown");
 
 const progressBar = document.querySelector(".progress div");
 
+// const checkedInput = document.getElementsByTagName("input");
+
 const player = {
   name: "player",
   mail: "player@quiz.app",
@@ -80,7 +82,7 @@ function remplir() {
   // Quiz form fill
 
   if (displayedQuestion.includes(randQuestion)) {
-    remplir()
+    remplir();
   } else {
     questionLabel.innerText = questionArrays[randQuestion].question;
 
@@ -118,6 +120,7 @@ btnStartQuiz.addEventListener("click", registerPlayerId);
 // Gestion du timer
 
 let timeLeft = 30;
+let test = 0;
 
 function updateProgressBar() {
   progressBar.style.width = (timeLeft / 30) * 100 + "%";
@@ -131,14 +134,45 @@ function startTimer() {
       countdownText.innerText = timeLeft;
     } else {
       // clearInterval(timerInterval);
-      timeLeft = 30;
-      registerPlayerId();
-      questionCount.innerText++;
+      test++;
+      if (test < 3) {
+        timeLeft = 30;
+        registerPlayerId();
+        questionCount.innerText++;
+      } else {
+        clearInterval(timerInterval);
+      }
     }
   }, 1000);
 }
 
 btnStartQuiz.addEventListener("click", startTimer);
-btnValid.addEventListener("click", startTimer);
+// btnValid.addEventListener("click", startTimer);
 
 // btnStartQuiz.addEventListener("click", remplir);
+
+const Input1 = document.getElementById("ans1");
+const Input2 = document.getElementById("ans2");
+const Input3 = document.getElementById("ans3");
+const Input4 = document.getElementById("ans4");
+
+function disableBtnValider() {
+  if (Input1.checked || Input2.checked || Input3.checked || Input4.checked) {
+    btnValid.removeAttribute("disabled");
+  } else {
+    btnValid.setAttribute("disabled", "true");
+  }
+}
+
+Input1.addEventListener("change", disableBtnValider);
+Input2.addEventListener("change", disableBtnValider);
+Input3.addEventListener("change", disableBtnValider);
+Input4.addEventListener("change", disableBtnValider);
+
+// setInterval(() => {
+//     if (checkedInput.checked){
+//         btnValid.removeAttribute("disabled")
+//     } else {
+//         btnValid.setAttribute("disabled", "true")
+//     }
+// }, 100);

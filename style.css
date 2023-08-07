@@ -11,8 +11,28 @@
 
 body {
   background: linear-gradient(to left, #87e5bc, #98dee5);
-  font-family: "Inter", sans-serif;
+  /* background: linear-gradient(45deg, #87e5bc 0%, darken(#98dee5, 50%) 100%);
+  background-size: 200% 200%;  
+  height: 100vh;
+  width: 100vw;
+  animation: background 6s ease infinite;*/
+
+  font-family: "Inter", sans-serif; 
 }
+
+@keyframes background { 
+    0% {
+      background-position: 0% 50%;
+    }
+    
+    50% {
+      background-position: 100% 50%;
+    }
+    
+    100% {
+      background-position: 0% 50%;
+    }
+  }
 
 main {
   display: flex;
@@ -191,4 +211,8 @@ input[type="radio"]:checked {
 
 .btn-pass button {
   background-color: #ec880c;
+}
+
+button:disabled{
+    opacity: 0.42;
 }
