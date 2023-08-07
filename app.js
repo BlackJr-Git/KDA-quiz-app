@@ -9,8 +9,8 @@ const nameInput = document.getElementById("name-input");
 const mailInput = document.getElementById("mail-input");
 const nameRequired = document.getElementById("name-input-required");
 const mailRequired = document.getElementById("mail-input-required");
-const getName = nameInput.value;
-const getMail = mailInput.value;
+// const getName = nameInput.value;
+// const getMail = mailInput.value;
 
 const btnStartQuiz = document.getElementById("start-quiz");
 const registrationForm = document.getElementById("reg-form");
@@ -97,8 +97,9 @@ function remplir() {
   registrationForm.style.display = "none";
 }
 
-function registerPlayerId() {
-  if (getName && getMail) {
+function registerPlayerId(event) {
+  event.preventDefault();
+  if (nameInput.value == '' && mailInput.value == '') {
     nameRequired.innerText =
       "N’oubliez pas de renseigner votre nom avant de commencer le Quiz";
     nameInput.style.border = "1px solid #FF3838";
@@ -110,7 +111,8 @@ function registerPlayerId() {
     player.mail = mailInput;
 
     remplir();
-    console.log(getName, getMail);
+    // console.log(getName, getMail);
+    console.log(nameInput.value, mailInput.value)
   }
 }
 
@@ -176,3 +178,5 @@ Input4.addEventListener("change", disableBtnValider);
 //         btnValid.setAttribute("disabled", "true")
 //     }
 // }, 100);
+
+console.log(nameInput.value, mailInput.value)
