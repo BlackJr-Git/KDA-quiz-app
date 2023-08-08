@@ -99,7 +99,7 @@ function remplir() {
 
 function registerPlayerId(event) {
   event.preventDefault();
-  if (nameInput.value == '' && mailInput.value == '') {
+  if (nameInput.value == "" && mailInput.value == "") {
     nameRequired.innerText =
       "N’oubliez pas de renseigner votre nom avant de commencer le Quiz";
     nameInput.style.border = "1px solid #FF3838";
@@ -112,7 +112,7 @@ function registerPlayerId(event) {
 
     remplir();
     // console.log(getName, getMail);
-    console.log(nameInput.value, mailInput.value)
+    console.log(nameInput.value, mailInput.value);
   }
 }
 
@@ -121,11 +121,11 @@ btnStartQuiz.addEventListener("click", registerPlayerId);
 
 // Gestion du timer
 
-let timeLeft = 30;
-let test = 0;
+let timeLeft = 10;
+let countNumQuestion = 0;
 
 function updateProgressBar() {
-  progressBar.style.width = (timeLeft / 30) * 100 + "%";
+  progressBar.style.width = (timeLeft / 10) * 100 + "%";
 }
 
 function startTimer() {
@@ -136,11 +136,14 @@ function startTimer() {
       countdownText.innerText = timeLeft;
     } else {
       // clearInterval(timerInterval);
-      test++;
-      if (test < 3) {
-        timeLeft = 30;
-        registerPlayerId();
+      countNumQuestion++;
+      console.log(countNumQuestion)
+      if (countNumQuestion <= 5) {
+        timeLeft = 10;
+        remplir();
         questionCount.innerText++;
+        console.log(questionCount.innerText);
+        uncheckInputRadio()
       } else {
         clearInterval(timerInterval);
       }
@@ -148,29 +151,55 @@ function startTimer() {
   }, 1000);
 }
 
+function resetTimer() {
+  countNumQuestion++;
+  if (countNumQuestion <= 5) {
+    timeLeft = 10;
+    timeLeft--;
+    updateProgressBar();
+    countdownText.innerText = timeLeft;
+    questionCount.innerText++;
+    uncheckInputRadio()
+  } else {
+    clearInterval(timerInterval);
+  }
+}
+
 btnStartQuiz.addEventListener("click", startTimer);
-// btnValid.addEventListener("click", startTimer);
+btnValid.addEventListener("click", resetTimer);
 
 // btnStartQuiz.addEventListener("click", remplir);
+// radio input variables get
+  const Input1 = document.getElementById("ans1");
+  const Input2 = document.getElementById("ans2");
+  const Input3 = document.getElementById("ans3");
+  const Input4 = document.getElementById("ans4");
 
-const Input1 = document.getElementById("ans1");
-const Input2 = document.getElementById("ans2");
-const Input3 = document.getElementById("ans3");
-const Input4 = document.getElementById("ans4");
-
+ 
 function disableBtnValider() {
   if (Input1.checked || Input2.checked || Input3.checked || Input4.checked) {
     btnValid.removeAttribute("disabled");
   } else {
+
     btnValid.setAttribute("disabled", "true");
   }
 }
 
-Input1.addEventListener("change", disableBtnValider);
-Input2.addEventListener("change", disableBtnValider);
-Input3.addEventListener("change", disableBtnValider);
-Input4.addEventListener("change", disableBtnValider);
+// radioninput Event 
+  Input1.addEventListener("change", disableBtnValider);
+  Input2.addEventListener("change", disableBtnValider);
+  Input3.addEventListener("change", disableBtnValider);
+  Input4.addEventListener("change", disableBtnValider);
 
+
+
+function uncheckInputRadio(){
+  Input1.checked = false;
+  Input2.checked = false;
+  Input3.checked = false;
+  Input4.checked = false;
+  btnValid.setAttribute("disabled", "true");
+}
 // setInterval(() => {
 //     if (checkedInput.checked){
 //         btnValid.removeAttribute("disabled")
@@ -179,4 +208,4 @@ Input4.addEventListener("change", disableBtnValider);
 //     }
 // }, 100);
 
-console.log(nameInput.value, mailInput.value)
+console.log(nameInput.value, mailInput.value);
