@@ -98,9 +98,19 @@
             <input type="radio" id="ans4" name="answer">
             <label for="ans4" id="answer4"></label>
         </div>
-        </form>
 
         <div class="button">
+          <div class="btn-pass btn-start ">
+              <button id="btnquit">Quitter</button>
+            </div>
+  
+          <div class="btn-start">
+            <button id="btnvalid" disabled >Valider</button>
+          </div>
+      </div>
+        </form>
+
+        <!-- <div class="button">
             <div class="btn-pass btn-start ">
                 <button id="btnquit">Quitter</button>
               </div>
@@ -108,7 +118,28 @@
             <div class="btn-start">
               <button id="btnvalid" disabled >Valider</button>
             </div>
+        </div> -->
+      </div>
+
+      <div class="container" id="score-form">
+        <h1>Votre Score</h1>
+
+        <div class="player-id">
+          <h2 id="name-display">Junior</h2>
+          <p>juniorassosa@gmail.com</p>
         </div>
+
+        <div class="icone">
+          <div class="circle">
+            <img src="images/red-circle.png" alt="">
+          </div>
+        </div>
+
+          <p class="final-score"> <Span id="final-score">0</Span>/5</p>
+
+          <div >
+            <button class="btn-home" id="btn-home">Acceuil</button>
+          </div>
       </div>
     </main>
 

@@ -121,10 +121,11 @@ input:focus {
 
 #reg-form {
   z-index: 99;
+  display: none;
 }
 
 #Quiz-form {
-  /* display: none; */
+  display: none;
   transition: 1s ease-in-out;
 }
 
@@ -215,4 +216,42 @@ input[type="radio"]:checked {
 
 button:disabled{
     opacity: 0.42;
+}
+
+/* SCORE FORM */
+
+.btn-home{
+  background-color: #0880D6 !important;
+  width: 230px;
+  height: 60px;
+  border: none;
+  color: #fff;
+  font-size: 1.2em;
+
+  box-shadow: 0px 7px 9px rgba(0, 0, 0, 0.3);
+
+  cursor: pointer;
+}
+
+.player-id{
+  text-align: center;
+  font-weight: 600;
+}
+
+h2{
+  margin-bottom: 20px;
+  font-size: 40px;
+}
+
+.circle{
+  /* background-color: red; */
+  position: relative;
+}
+
+.circle::after {
+  content: url(images/red-cross.png);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
