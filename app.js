@@ -1,6 +1,7 @@
 // differentes pages du quiz
 const quizForm = document.getElementById("Quiz-form");
 const registrationForm = document.getElementById("reg-form");
+const scoreForm = document.getElementById("score-form");
 
 // timer et compte a rebours
 const timer = document.getElementById("progress");
@@ -13,9 +14,12 @@ const mailInput = document.getElementById("mail-input");
 const nameRequired = document.getElementById("name-input-required");
 const mailRequired = document.getElementById("mail-input-required");
 
+const playerNameDisplay = document.getElementById("name-display");
+const playerMailDisplay = document.getElementById("mail-display");
 // bouttons
 const btnStartQuiz = document.getElementById("start-quiz");
 const btnValid = document.getElementById("btnvalid");
+const btnHome = document.getElementById("btn-home");
 
 // labels Question et reponses
 const questionLabel = document.getElementById("question");
@@ -24,8 +28,16 @@ const secondAnswer = document.getElementById("answer2");
 const thirdAnswer = document.getElementById("answer3");
 const fourthAnswer = document.getElementById("answer4");
 
-// compte de question
+// compte de question et score
 const questionCount = document.getElementById("question-count");
+const finalScoreDisplayed = document.getElementById("final-score");
+
+// Icons
+const iconCross = document.getElementById("cross");
+const iconCircle = document.getElementById("circle");
+
+iconCircle.src = "images/green-circle.png";
+iconCross.src = "images/green-check.png";
 
 // Cette section Contient les Objets : Player et Question
 const player = {
@@ -41,6 +53,8 @@ const question1 = {
   answer1: ".jsx",
   answer2: ".j",
   answer3: ".ts",
+
+  answers: [".js", ".jsx", ".j", ".ts"],
 };
 
 const question2 = {
@@ -50,6 +64,8 @@ const question2 = {
   answer1: "Anglais",
   answer2: "Espagnol",
   answer3: "Allemand",
+
+  answers: ["Francais", "Anglais", "Espagnol", "Allemand"],
 };
 
 const question3 = {
@@ -59,6 +75,8 @@ const question3 = {
   answer1: "Madara",
   answer2: "Dio Brando",
   answer3: "Sneizel",
+
+  answers: ["Meruem", "Madara", "Dio Brando", "Sneizel"],
 };
 
 const question4 = {
@@ -68,6 +86,8 @@ const question4 = {
   answer1: "Chine",
   answer2: "Canada",
   answer3: "Mongolie",
+
+  answers: ["Russie", "Chine", "Canada", "Mongolie"],
 };
 
 const question5 = {
@@ -77,6 +97,8 @@ const question5 = {
   answer1: "Francais",
   answer2: "Anglais",
   answer3: "Portugais",
+
+  answers: ["Chinois", "Francais", "Anglais", "Portugais"],
 };
 
 // Operation pour rendre les question aleatoire lors du lancement du quiz
@@ -92,6 +114,10 @@ function takeRandomQuestion() {
   }
 }
 
+// random order for answers
+question1.answers 
+
+
 // Fonction qui permet de remplir les champs dynamique des questions
 function remplir() {
   let randQuestion = Math.floor(Math.random() * questionArrays.length);
@@ -100,6 +126,8 @@ function remplir() {
   if (displayedQuestion.includes(randQuestion)) {
     remplir();
   } else {
+    getInputValue();
+
     questionLabel.innerText = questionArrays[randQuestion].question;
 
     firstAnswer.innerText = questionArrays[randQuestion].answer1;
@@ -178,7 +206,7 @@ function startTimer() {
 
 function resetTimer() {
   countNumQuestion++;
-  
+
   if (countNumQuestion <= 5) {
     getInputValue();
     getCheckedValue();
@@ -255,5 +283,5 @@ function getCheckedValue() {
   console.log(`la valeur selectionner est :  ${answerChecked}`);
 }
 
-btnValid.addEventListener("click", getCheckedValue);
+// btnValid.addEventListener("click", getCheckedValue);
 console.log(nameInput.value, mailInput.value);
