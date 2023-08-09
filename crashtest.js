@@ -1,44 +1,38 @@
+const question4 = {
+  question: "Quel est le plus grand pays du monde?",
 
+  trueAnswer: "Russie",
+  answer1: "Chine",
+  answer2: "Canada",
+  answer3: "Mongolie",
 
-const question1 = {
-    question: "Quel est le type d'un fichier javascript ?",
-  
-    trueAnswer: ".js",
-    answer1: ".jsx",
-    answer2: ".j",
-    answer3: ".ts",
+  answers: ["Russie", "Chine", "Canada", "Mongolie"],
 };
 
-const question2 = {
-    question: "Quel est la langue officiel en rdc?",
-  
-    trueAnswer: "Allemand",
-    answer1: "Anglais",
-    answer2: "Espagnol",
-    answer3: "Francais",
-};
+let displayedAnswer = []
 
-const question3 = {
-    question: "Quel est le plus grand antagoniste d'un manga?",
-  
-    trueAnswer: "Madara",
-    answer1: "Meruem",
-    answer2: "Dio Brando",
-    answer3: "Sneizel",
-};
 
-// Gestion des objects question 
+// function takeRandomAnswer(){
+//     let randomAnswer = Math.floor(Math.random() * 4);
 
-const questionArrays = [question1, question2, question3] // Liste de question 
-let randQuestion = Math.floor(Math.random()*questionArrays.length);
+//     for (i = 0; i < 4; i++) {
+//         displayedAnswer.push(question4.answers[randomAnswer]);
+//     }
+// }
 
-let displayedQuestion = [];
+function remplirReponse(Objets) {
+    let randomAnswer = Math.floor(Math.random() * 4);
+
+    if (displayedAnswer.includes(randomAnswer)) {
+        remplirReponse();
+      } else {
+        console.log(Objects.answers[randomAnswer])
+        displayedAnswer.push(randomAnswer);
+      }
+} 
 
 
 
-if (displayedQuestion.includes(randQuestion)){
-    displayedQuestion.push(randQuestion)
-} else {
-    
+for (let index = 0; index < 4; index++) {
+    remplirReponse(question4)
 }
-

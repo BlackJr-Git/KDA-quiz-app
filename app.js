@@ -115,7 +115,7 @@ function takeRandomQuestion() {
 }
 
 // random order for answers
-question1.answers 
+let randomAnswer = Math.floor(Math.random()* 4)
 
 
 // Fonction qui permet de remplir les champs dynamique des questions
