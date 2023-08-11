@@ -36,15 +36,33 @@ const finalScoreDisplayed = document.getElementById("final-score");
 const iconCross = document.getElementById("cross");
 const iconCircle = document.getElementById("circle");
 
-iconCircle.src = "images/green-circle.png";
-iconCross.src = "images/green-check.png";
-
 // Cette section Contient les Objets : Player et Question
 const player = {
   name: "player",
   mail: "player@quiz.app",
   score: 0,
 };
+
+// Fonction qui permet l'enregistrement du joueur
+function registerPlayerId(event) {
+  event.preventDefault();
+  if (nameInput.value == "" && mailInput.value == "") {
+    nameRequired.innerText =
+      "N’oubliez pas de renseigner votre nom avant de commencer le Quiz";
+    nameInput.style.border = "1px solid #FF3838";
+    mailRequired.innerText =
+      "N’oubliez pas de renseigner votre email avant de commencer le Quiz";
+    mailInput.style.border = "1px solid #FF3838";
+  } else {
+    player.name = nameInput;
+    player.mail = mailInput;
+
+    remplir();
+    console.log(nameInput.value, mailInput.value);
+  }
+}
+console.log(nameInput.value, mailInput.value);
+// Objetc Question
 
 const question1 = {
   question: "Quel est le type d'un fichier javascript ?",
@@ -101,8 +119,26 @@ const question5 = {
   answers: ["Chinois", "Francais", "Anglais", "Portugais"],
 };
 
+const question6 = {
+  question: "Quel est le personnage principale du manga Naruto?",
+
+  trueAnswer: "Naruto",
+  answer1: "Sasuke",
+  answer2: "Boruto",
+  answer3: "Madara",
+
+  answers: ["Chinois", "Francais", "Anglais", "Portugais"],
+};
+
 // Operation pour rendre les question aleatoire lors du lancement du quiz
-const questionArrays = [question1, question2, question3, question5, question4]; // Liste de question
+const questionArrays = [
+  question1,
+  question2,
+  question3,
+  question5,
+  question4,
+  question6,
+]; // Liste de question
 let randQuestion = Math.floor(Math.random() * questionArrays.length);
 let displayedQuestion = [];
 
@@ -115,25 +151,31 @@ function takeRandomQuestion() {
 }
 
 // random order for answers
-let randomAnswer = Math.floor(Math.random()* 4)
-
-
+// let randomAnswer = Math.floor(Math.random() * 4);
+let index ;
 // Fonction qui permet de remplir les champs dynamique des questions
 function remplir() {
   let randQuestion = Math.floor(Math.random() * questionArrays.length);
+
+  index = randQuestion
   // Quiz form fill
 
   if (displayedQuestion.includes(randQuestion)) {
     remplir();
   } else {
-    getInputValue();
-
     questionLabel.innerText = questionArrays[randQuestion].question;
+
+
 
     firstAnswer.innerText = questionArrays[randQuestion].answer1;
     secondAnswer.innerText = questionArrays[randQuestion].answer2;
     thirdAnswer.innerText = questionArrays[randQuestion].trueAnswer;
     fourthAnswer.innerText = questionArrays[randQuestion].answer3;
+
+    Input1.value = questionArrays[randQuestion].answer1;
+    Input2.value = questionArrays[randQuestion].answer2;
+    Input3.value = questionArrays[randQuestion].trueAnswer;
+    Input4.value = questionArrays[randQuestion].answer3;
 
     console.log(Input1.value, Input2.value, Input3.value, Input4.value);
 
@@ -144,34 +186,16 @@ function remplir() {
 }
 
 function getInputValue() {
-  Input1.value = questionArrays[randQuestion].answer1;
-  Input2.value = questionArrays[randQuestion].answer2;
-  Input3.value = questionArrays[randQuestion].trueAnswer;
-  Input4.value = questionArrays[randQuestion].answer3;
+  Input1.value = questionArrays[index].answer1;
+  Input2.value = questionArrays[index].answer2;
+  Input3.value = questionArrays[index].trueAnswer;
+  Input4.value = questionArrays[index].answer3;
 }
 
-// Fonction qui permet l'enregistrement du joueur
-function registerPlayerId(event) {
-  event.preventDefault();
-  if (nameInput.value == "" && mailInput.value == "") {
-    nameRequired.innerText =
-      "N’oubliez pas de renseigner votre nom avant de commencer le Quiz";
-    nameInput.style.border = "1px solid #FF3838";
-    mailRequired.innerText =
-      "N’oubliez pas de renseigner votre email avant de commencer le Quiz";
-    mailInput.style.border = "1px solid #FF3838";
-  } else {
-    player.name = nameInput;
-    player.mail = mailInput;
-
-    remplir();
-    console.log(nameInput.value, mailInput.value);
-  }
-}
-
-// Ecouteur d'evenement
+// Ecouteur d'evenement pour le btn Commencer
 
 btnStartQuiz.addEventListener("click", registerPlayerId);
+btnStartQuiz.addEventListener("click", startTimer);
 
 // Gestion du timer
 let timeLeft = 10;
@@ -189,27 +213,37 @@ function startTimer() {
       countdownText.innerText = timeLeft;
     } else {
       // clearInterval(timerInterval);
+      getCheckedValue();
       countNumQuestion++;
-      console.log(countNumQuestion);
+
       if (countNumQuestion <= 5) {
         timeLeft = 10;
         remplir();
         questionCount.innerText++;
-        console.log(questionCount.innerText);
+
         uncheckInputRadio();
       } else {
         clearInterval(timerInterval);
+        quizForm.style.display = "none";
+        displayScore();
       }
     }
   }, 1000);
 }
 
-function resetTimer() {
+function resetTimer(event) {
+  event.preventDefault();
   countNumQuestion++;
+  getCheckedValue();
+  
+  
 
-  if (countNumQuestion <= 5) {
-    getInputValue();
-    getCheckedValue();
+
+
+  if (countNumQuestion < 5) {
+    // getInputValue();   ////////// TRAITEMENT
+    // getCheckedValue();
+
     timeLeft = 10;
     timeLeft--;
     updateProgressBar();
@@ -217,11 +251,14 @@ function resetTimer() {
     questionCount.innerText++;
     uncheckInputRadio();
   } else {
-    clearInterval(timerInterval);
+    // clearInterval();
+    quizForm.style.display = "none";
+    displayScore();
   }
 }
 
-btnStartQuiz.addEventListener("click", startTimer);
+// Ecouteur d'evenement pour le boutton Valider
+
 btnValid.addEventListener("click", remplir);
 btnValid.addEventListener("click", resetTimer);
 
@@ -256,20 +293,8 @@ function uncheckInputRadio() {
 }
 
 // Fonction qui recupere la valeurs de l'input cheched
-// function getCheckedValue() {
-//   const radioInputs = document.querySelectorAll('input[type="radio"]');
-//   let valeurCochee = null;
-
-//   radioInputs.forEach(function(input) {
-//       if (input.checked) {
-//           valeurCochee = input.value;
-//           console.log("La valeur cochée est :",input.value);
-//       }
-//   });
-// }
-
+let answerChecked;
 function getCheckedValue() {
-  let answerChecked;
   if (Input1.checked === true) {
     answerChecked = Input1.value;
   } else if (Input2.checked === true) {
@@ -281,7 +306,46 @@ function getCheckedValue() {
   }
 
   console.log(`la valeur selectionner est :  ${answerChecked}`);
+
+  if (answerChecked == questionArrays[index].trueAnswer) {
+    player.score++;
+    console.log('le score du joueur est',player.score);
+  } else{
+    console.log('le score du joueur est',player.score);
+  }
+
+  console.log('la veritable reponse est', questionArrays[index].trueAnswer )
 }
 
 // btnValid.addEventListener("click", getCheckedValue);
-console.log(nameInput.value, mailInput.value);
+
+//  Effectuer le cacule de score
+
+function increaseScore() {
+  if (answerChecked == questionArrays[index].trueAnswer) {
+    player.score++;
+    console.log('le score du joueur est',player.score);
+  } else{
+    console.log('le score du joueur est',player.score);
+  }
+}
+
+function displayScore() {
+  playerNameDisplay.innerText = nameInput.value;
+  playerMailDisplay.innerText = mailInput.value;
+  finalScoreDisplayed.innerText = player.score;
+
+  if (player.score < 3) {
+  } else {
+    iconCircle.src = "images/green-circle.png";
+    iconCross.src = "images/green-check.png";
+  }
+}
+
+function reloadQuiz(){
+  location.reload()
+}
+
+
+btnHome.addEventListener("click", reloadQuiz);
+console.log('le score du joueur est',player.score);

@@ -121,16 +121,18 @@ input:focus {
 
 #reg-form {
   z-index: 99;
-  display: none;
+  /* display: none; */
 }
 
 #Quiz-form {
-  display: none;
+  /* display: none; */
+  z-index: 98;
   transition: 1s ease-in-out;
 }
 
 #score-form{
   /* display: none; */
+  z-index: 1;
 }
 
 /* TIMER */
