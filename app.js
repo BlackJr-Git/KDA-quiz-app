@@ -20,6 +20,7 @@ const playerMailDisplay = document.getElementById("mail-display");
 const btnStartQuiz = document.getElementById("start-quiz");
 const btnValid = document.getElementById("btnvalid");
 const btnHome = document.getElementById("btn-home");
+const btnQuit = document.getElementById("btnquit");
 
 // labels Question et reponses
 const questionLabel = document.getElementById("question");
@@ -152,20 +153,18 @@ function takeRandomQuestion() {
 
 // random order for answers
 // let randomAnswer = Math.floor(Math.random() * 4);
-let index ;
+let index;
 // Fonction qui permet de remplir les champs dynamique des questions
 function remplir() {
   let randQuestion = Math.floor(Math.random() * questionArrays.length);
 
-  index = randQuestion
+  index = randQuestion;
   // Quiz form fill
 
   if (displayedQuestion.includes(randQuestion)) {
     remplir();
   } else {
     questionLabel.innerText = questionArrays[randQuestion].question;
-
-
 
     firstAnswer.innerText = questionArrays[randQuestion].answer1;
     secondAnswer.innerText = questionArrays[randQuestion].answer2;
@@ -235,10 +234,6 @@ function resetTimer(event) {
   event.preventDefault();
   countNumQuestion++;
   getCheckedValue();
-  
-  
-
-
 
   if (countNumQuestion < 5) {
     // getInputValue();   ////////// TRAITEMENT
@@ -309,27 +304,25 @@ function getCheckedValue() {
 
   if (answerChecked == questionArrays[index].trueAnswer) {
     player.score++;
-    console.log('le score du joueur est',player.score);
-  } else{
-    console.log('le score du joueur est',player.score);
+    console.log("le score du joueur est", player.score);
+  } else {
+    console.log("le score du joueur est", player.score);
   }
 
-  console.log('la veritable reponse est', questionArrays[index].trueAnswer )
+  console.log("la veritable reponse est", questionArrays[index].trueAnswer);
 }
 
 // btnValid.addEventListener("click", getCheckedValue);
 
 //  Effectuer le cacule de score
-
 function increaseScore() {
   if (answerChecked == questionArrays[index].trueAnswer) {
     player.score++;
-    console.log('le score du joueur est',player.score);
-  } else{
-    console.log('le score du joueur est',player.score);
+    console.log("le score du joueur est", player.score);
   }
 }
 
+// Afiichage du score
 function displayScore() {
   playerNameDisplay.innerText = nameInput.value;
   playerMailDisplay.innerText = mailInput.value;
@@ -342,10 +335,9 @@ function displayScore() {
   }
 }
 
-function reloadQuiz(){
-  location.reload()
+function reloadQuiz() {
+  location.reload();
 }
 
-
 btnHome.addEventListener("click", reloadQuiz);
-console.log('le score du joueur est',player.score);
+btnQuit.addEventListener("click", reloadQuiz);
