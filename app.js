@@ -59,6 +59,7 @@ function registerPlayerId(event) {
     player.mail = mailInput;
 
     remplir();
+    startTimer()
     console.log(nameInput.value, mailInput.value);
   }
 }
@@ -194,7 +195,7 @@ function getInputValue() {
 // Ecouteur d'evenement pour le btn Commencer
 
 btnStartQuiz.addEventListener("click", registerPlayerId);
-btnStartQuiz.addEventListener("click", startTimer);
+// btnStartQuiz.addEventListener("click", startTimer);
 
 // Gestion du timer
 let timeLeft = 30;
@@ -312,7 +313,6 @@ function getCheckedValue() {
   console.log("la veritable reponse est", questionArrays[index].trueAnswer);
 }
 
-// btnValid.addEventListener("click", getCheckedValue);
 
 //  Effectuer le cacule de score
 function increaseScore() {
