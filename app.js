@@ -47,7 +47,7 @@ const player = {
 // Fonction qui permet l'enregistrement du joueur
 function registerPlayerId(event) {
   event.preventDefault();
-  if (nameInput.value == "" && mailInput.value == "") {
+  if (nameInput.value == "" || mailInput.value == "") {
     nameRequired.innerText =
       "N’oubliez pas de renseigner votre nom avant de commencer le Quiz";
     nameInput.style.border = "1px solid #FF3838";
