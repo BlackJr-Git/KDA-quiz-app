@@ -47,7 +47,7 @@ const player = {
 // Fonction qui permet l'enregistrement du joueur
 function registerPlayerId(event) {
   event.preventDefault();
-  if (nameInput.value == "" || mailInput.value == "") {
+  if (nameInput.value == "" && mailInput.value == "") {
     nameRequired.innerText =
       "N’oubliez pas de renseigner votre nom avant de commencer le Quiz";
     nameInput.style.border = "1px solid #FF3838";
@@ -59,7 +59,7 @@ function registerPlayerId(event) {
     player.mail = mailInput;
 
     remplir();
-    startTimer();
+    startTimer()
     console.log(nameInput.value, mailInput.value);
   }
 }
@@ -69,43 +69,67 @@ console.log(nameInput.value, mailInput.value);
 const question1 = {
   question: "Quel est le type d'un fichier javascript ?",
 
-  answers: [".js", ".jsx", ".j", ".ts"],
   trueAnswer: ".js",
+  answer1: ".jsx",
+  answer2: ".j",
+  answer3: ".ts",
+
+  answers: [".js", ".jsx", ".j", ".ts"],
 };
 
 const question2 = {
   question: "Quel est la langue officiel en rdc?",
 
-  answers: ["Francais", "Anglais", "Espagnol", "Allemand"],
   trueAnswer: "Francais",
+  answer1: "Anglais",
+  answer2: "Espagnol",
+  answer3: "Allemand",
+
+  answers: ["Francais", "Anglais", "Espagnol", "Allemand"],
 };
 
 const question3 = {
   question: "Quel est le plus grand antagoniste d'un manga?",
 
-  answers: ["Meruem", "Madara", "Dio Brando", "Sneizel"],
   trueAnswer: "Meruem",
+  answer1: "Madara",
+  answer2: "Dio Brando",
+  answer3: "Sneizel",
+
+  answers: ["Meruem", "Madara", "Dio Brando", "Sneizel"],
 };
 
 const question4 = {
   question: "Quel est le plus grand pays du monde?",
 
-  answers: ["Mongolie", "Chine", "Canada", "Russie"],
   trueAnswer: "Russie",
+  answer1: "Chine",
+  answer2: "Canada",
+  answer3: "Mongolie",
+
+  answers: ["Russie", "Chine", "Canada", "Mongolie"],
 };
 
 const question5 = {
   question: "Quel est la langue la plus parler du monde?",
 
-  answers: ["Francais", "Chinois", "Anglais", "Portugais"],
   trueAnswer: "Chinois",
+  answer1: "Francais",
+  answer2: "Anglais",
+  answer3: "Portugais",
+
+  answers: ["Chinois", "Francais", "Anglais", "Portugais"],
 };
 
 const question6 = {
   question: "Quel est le personnage principale du manga Naruto?",
 
-  answers: ["Madara", "Naruto", "Sasuke", "Boruto"],
   trueAnswer: "Naruto",
+  answer1: "Sasuke",
+  answer2: "Boruto",
+  answer3: "Madara",
+
+  answers: ["Chinois", "Francais", "Anglais", "Portugais"],
 };
 
 // Operation pour rendre les question aleatoire lors du lancement du quiz
@@ -143,15 +167,15 @@ function remplir() {
   } else {
     questionLabel.innerText = questionArrays[randQuestion].question;
 
-    firstAnswer.innerText = questionArrays[randQuestion].answers[0];
-    secondAnswer.innerText = questionArrays[randQuestion].answers[1];
-    thirdAnswer.innerText = questionArrays[randQuestion].answers[2];
-    fourthAnswer.innerText = questionArrays[randQuestion].answers[3];
+    firstAnswer.innerText = questionArrays[randQuestion].answer1;
+    secondAnswer.innerText = questionArrays[randQuestion].answer2;
+    thirdAnswer.innerText = questionArrays[randQuestion].trueAnswer;
+    fourthAnswer.innerText = questionArrays[randQuestion].answer3;
 
-    Input1.value = questionArrays[randQuestion].answers[0];
-    Input2.value = questionArrays[randQuestion].answers[1];
-    Input3.value = questionArrays[randQuestion].answers[2];
-    Input4.value = questionArrays[randQuestion].answers[3];
+    Input1.value = questionArrays[randQuestion].answer1;
+    Input2.value = questionArrays[randQuestion].answer2;
+    Input3.value = questionArrays[randQuestion].trueAnswer;
+    Input4.value = questionArrays[randQuestion].answer3;
 
     console.log(Input1.value, Input2.value, Input3.value, Input4.value);
 
@@ -288,6 +312,7 @@ function getCheckedValue() {
 
   console.log("la veritable reponse est", questionArrays[index].trueAnswer);
 }
+
 
 //  Effectuer le cacule de score
 function increaseScore() {
