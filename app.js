@@ -197,11 +197,11 @@ btnStartQuiz.addEventListener("click", registerPlayerId);
 btnStartQuiz.addEventListener("click", startTimer);
 
 // Gestion du timer
-let timeLeft = 10;
+let timeLeft = 30;
 let countNumQuestion = 0;
 
 function updateProgressBar() {
-  progressBar.style.width = (timeLeft / 10) * 100 + "%";
+  progressBar.style.width = (timeLeft / 30) * 100 + "%";
 }
 
 function startTimer() {
@@ -216,7 +216,7 @@ function startTimer() {
       countNumQuestion++;
 
       if (countNumQuestion <= 5) {
-        timeLeft = 10;
+        timeLeft = 30;
         remplir();
         questionCount.innerText++;
 
@@ -239,7 +239,7 @@ function resetTimer(event) {
     // getInputValue();   ////////// TRAITEMENT
     // getCheckedValue();
 
-    timeLeft = 10;
+    timeLeft = 30;
     timeLeft--;
     updateProgressBar();
     countdownText.innerText = timeLeft;
