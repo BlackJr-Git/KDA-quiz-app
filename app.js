@@ -129,7 +129,7 @@ const question6 = {
   answer2: "Boruto",
   answer3: "Madara",
 
-  answers: ["Chinois", "Francais", "Anglais", "Portugais"],
+  answers: ["Madara", "Naruto", "Sasuke", "Boruto"],
 };
 
 // Operation pour rendre les question aleatoire lors du lancement du quiz
@@ -141,7 +141,7 @@ const questionArrays = [
   question4,
   question6,
 ]; // Liste de question
-let randQuestion = Math.floor(Math.random() * questionArrays.length);
+// let randQuestion = Math.floor(Math.random() * questionArrays.length);z
 let displayedQuestion = [];
 
 function takeRandomQuestion() {
@@ -167,15 +167,25 @@ function remplir() {
   } else {
     questionLabel.innerText = questionArrays[randQuestion].question;
 
-    firstAnswer.innerText = questionArrays[randQuestion].answer1;
-    secondAnswer.innerText = questionArrays[randQuestion].answer2;
-    thirdAnswer.innerText = questionArrays[randQuestion].trueAnswer;
-    fourthAnswer.innerText = questionArrays[randQuestion].answer3;
+    // firstAnswer.innerText = questionArrays[randQuestion].answer1;
+    // secondAnswer.innerText = questionArrays[randQuestion].answer2;
+    // thirdAnswer.innerText = questionArrays[randQuestion].trueAnswer;
+    // fourthAnswer.innerText = questionArrays[randQuestion].answer3;
 
-    Input1.value = questionArrays[randQuestion].answer1;
-    Input2.value = questionArrays[randQuestion].answer2;
-    Input3.value = questionArrays[randQuestion].trueAnswer;
-    Input4.value = questionArrays[randQuestion].answer3;
+    firstAnswer.innerText = questionArrays[randQuestion].answers[0];
+    secondAnswer.innerText = questionArrays[randQuestion].answers[1];
+    thirdAnswer.innerText = questionArrays[randQuestion].answers[2];
+    fourthAnswer.innerText = questionArrays[randQuestion].answers[3];
+
+    // Input1.value = questionArrays[randQuestion].answer1;
+    // Input2.value = questionArrays[randQuestion].answer2;
+    // Input3.value = questionArrays[randQuestion].trueAnswer;
+    // Input4.value = questionArrays[randQuestion].answer3;
+
+    Input1.value = questionArrays[randQuestion].answers[0];
+    Input2.value = questionArrays[randQuestion].answers[1];
+    Input3.value = questionArrays[randQuestion].answers[2];
+    Input4.value = questionArrays[randQuestion].answers[3];
 
     console.log(Input1.value, Input2.value, Input3.value, Input4.value);
 
@@ -185,12 +195,12 @@ function remplir() {
   registrationForm.style.display = "none";
 }
 
-function getInputValue() {
-  Input1.value = questionArrays[index].answer1;
-  Input2.value = questionArrays[index].answer2;
-  Input3.value = questionArrays[index].trueAnswer;
-  Input4.value = questionArrays[index].answer3;
-}
+// function getInputValue() {
+//   Input1.value = questionArrays[index].answer1;
+//   Input2.value = questionArrays[index].answer2;
+//   Input3.value = questionArrays[index].trueAnswer;
+//   Input4.value = questionArrays[index].answer3;
+// }
 
 // Ecouteur d'evenement pour le btn Commencer
 
