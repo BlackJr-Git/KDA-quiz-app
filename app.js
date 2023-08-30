@@ -47,7 +47,7 @@ const player = {
 // Fonction qui permet l'enregistrement du joueur
 function registerPlayerId(event) {
   event.preventDefault();
-  if (nameInput.value == "" && mailInput.value == "") {
+  if (nameInput.value == "" || mailInput.value == "") {
     nameRequired.innerText =
       "N’oubliez pas de renseigner votre nom avant de commencer le Quiz";
     nameInput.style.border = "1px solid #FF3838";
@@ -59,7 +59,7 @@ function registerPlayerId(event) {
     player.mail = mailInput;
 
     remplir();
-    startTimer()
+    startTimer();
     console.log(nameInput.value, mailInput.value);
   }
 }
@@ -74,7 +74,7 @@ const question1 = {
   answer2: ".j",
   answer3: ".ts",
 
-  answers: [".js", ".jsx", ".j", ".ts"],
+  answers: [".j", ".js", ".jsx", ".ts"],
 };
 
 const question2 = {
@@ -85,7 +85,7 @@ const question2 = {
   answer2: "Espagnol",
   answer3: "Allemand",
 
-  answers: ["Francais", "Anglais", "Espagnol", "Allemand"],
+  answers: ["Espagnol", "Anglais", "Francais", "Allemand"],
 };
 
 const question3 = {
@@ -96,7 +96,7 @@ const question3 = {
   answer2: "Dio Brando",
   answer3: "Sneizel",
 
-  answers: ["Meruem", "Madara", "Dio Brando", "Sneizel"],
+  answers: ["Madara", "Dio Brando", "Meruem", "Sneizel"],
 };
 
 const question4 = {
@@ -107,7 +107,7 @@ const question4 = {
   answer2: "Canada",
   answer3: "Mongolie",
 
-  answers: ["Russie", "Chine", "Canada", "Mongolie"],
+  answers: ["Canada", "Chine", "Mongolie", "Russie"],
 };
 
 const question5 = {
@@ -118,7 +118,7 @@ const question5 = {
   answer2: "Anglais",
   answer3: "Portugais",
 
-  answers: ["Chinois", "Francais", "Anglais", "Portugais"],
+  answers: ["Francais", "Anglais", "Chinois", "Portugais"],
 };
 
 const question6 = {
@@ -167,25 +167,25 @@ function remplir() {
   } else {
     questionLabel.innerText = questionArrays[randQuestion].question;
 
-    // firstAnswer.innerText = questionArrays[randQuestion].answer1;
-    // secondAnswer.innerText = questionArrays[randQuestion].answer2;
-    // thirdAnswer.innerText = questionArrays[randQuestion].trueAnswer;
-    // fourthAnswer.innerText = questionArrays[randQuestion].answer3;
+    firstAnswer.innerText = questionArrays[randQuestion].answer1;
+    secondAnswer.innerText = questionArrays[randQuestion].answer2;
+    thirdAnswer.innerText = questionArrays[randQuestion].trueAnswer;
+    fourthAnswer.innerText = questionArrays[randQuestion].answer3;
 
-    firstAnswer.innerText = questionArrays[randQuestion].answers[0];
-    secondAnswer.innerText = questionArrays[randQuestion].answers[1];
-    thirdAnswer.innerText = questionArrays[randQuestion].answers[2];
-    fourthAnswer.innerText = questionArrays[randQuestion].answers[3];
+    // firstAnswer.innerText = questionArrays[randQuestion].answers[0];
+    // secondAnswer.innerText = questionArrays[randQuestion].answers[1];
+    // thirdAnswer.innerText = questionArrays[randQuestion].answers[2];
+    // fourthAnswer.innerText = questionArrays[randQuestion].answers[3];
 
-    // Input1.value = questionArrays[randQuestion].answer1;
-    // Input2.value = questionArrays[randQuestion].answer2;
-    // Input3.value = questionArrays[randQuestion].trueAnswer;
-    // Input4.value = questionArrays[randQuestion].answer3;
+    Input1.value = questionArrays[randQuestion].answer1;
+    Input2.value = questionArrays[randQuestion].answer2;
+    Input3.value = questionArrays[randQuestion].trueAnswer;
+    Input4.value = questionArrays[randQuestion].answer3;
 
-    Input1.value = questionArrays[randQuestion].answers[0];
-    Input2.value = questionArrays[randQuestion].answers[1];
-    Input3.value = questionArrays[randQuestion].answers[2];
-    Input4.value = questionArrays[randQuestion].answers[3];
+    // Input1.value = questionArrays[randQuestion].answers[0];
+    // Input2.value = questionArrays[randQuestion].answers[1];
+    // Input3.value = questionArrays[randQuestion].answers[2];
+    // Input4.value = questionArrays[randQuestion].answers[3];
 
     console.log(Input1.value, Input2.value, Input3.value, Input4.value);
 
@@ -267,6 +267,7 @@ function resetTimer(event) {
 
 btnValid.addEventListener("click", remplir);
 btnValid.addEventListener("click", resetTimer);
+Window;
 
 // radio input variables get
 const Input1 = document.getElementById("ans1");
@@ -313,7 +314,7 @@ function getCheckedValue() {
 
   console.log(`la valeur selectionner est :  ${answerChecked}`);
 
-  if (answerChecked == questionArrays[index].trueAnswer) {
+  if (answerChecked === questionArrays[index].trueAnswer) {
     player.score++;
     console.log("le score du joueur est", player.score);
   } else {
@@ -322,7 +323,6 @@ function getCheckedValue() {
 
   console.log("la veritable reponse est", questionArrays[index].trueAnswer);
 }
-
 
 //  Effectuer le cacule de score
 function increaseScore() {
